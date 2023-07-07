@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b437ldi6lop4s"]
+
+[ext_resource type="Texture2D" uid="uid://c7uh3mqi5aipt" path="res://assets/pdn1_fr1.png" id="1_oxu60"]
+[ext_resource type="Script" path="res://CutSprite.gd" id="1_ycir5"]
+
+[node name="Prototype" type="Node2D"]
+
+[node name="StaticBody" type="StaticBody2D" parent="."]
+position = Vector2(480, 278)
+input_pickable = true
+script = ExtResource("1_ycir5")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody"]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("1_oxu60")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody"]
+
+[connection signal="mouse_entered" from="StaticBody" to="StaticBody" method="_on_mouse_entered"]
