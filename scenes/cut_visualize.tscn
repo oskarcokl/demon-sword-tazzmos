@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxkgtqgehunh1"]
+
+[ext_resource type="Script" path="res://scripts/CutVisualize.gd" id="1_r0o6i"]
+
+[node name="CutVisualize" type="Polygon2D"]
+script = ExtResource("1_r0o6i")
