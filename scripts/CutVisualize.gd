@@ -7,22 +7,16 @@ extends Polygon2D
 var t: float = 0.0
 
 
-func _ready():
-    set_process(false)
-    visible = false
-
-
 func create_cut_visualizer(pos: Vector2, fade_speed: float = 1.0) -> void:
     global_position = pos
-    visible = true
     if fade_speed > 0.0:
         self.fade_speed = fade_speed
         set_process(true)
 
 
 func _process(delta: float) -> void:
-    if fade_speed > 0.0:
-        t += delta * fade_speed
+    if self.fade_speed > 0.0:
+        t += delta * self.fade_speed
 
     color = lerp(start_color, end_color, t)
 

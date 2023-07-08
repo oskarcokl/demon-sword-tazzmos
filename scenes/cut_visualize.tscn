@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scripts/CutVisualize.gd" id="1_r0o6i"]
 
 [node name="CutVisualize" type="Polygon2D"]
+modulate = Color(1, 0.415686, 0.415686, 1)
 script = ExtResource("1_r0o6i")
