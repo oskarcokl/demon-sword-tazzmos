@@ -115,6 +115,7 @@ static func getTriangleCentroid(points : PackedVector2Array) -> Vector2:
 static func cutShape(source_polygon : PackedVector2Array, cut_polygon : PackedVector2Array, source_trans_global : Transform2D, cut_trans_global : Transform2D) -> Dictionary:
     var cut_pos : Vector2 = toLocal(source_trans_global, cut_trans_global.get_origin())
 
+
     cut_polygon = rotatePolygon(cut_polygon, cut_trans_global.get_rotation() - source_trans_global.get_rotation())
     cut_polygon = translatePolygon(cut_polygon, cut_pos)
 
@@ -177,3 +178,8 @@ static func getCounterClockwisePolygons(polygons : Array) -> Array:
         if not Geometry2D.is_polygon_clockwise(poly):
             ccw_polygons.append(poly)
     return ccw_polygons
+
+
+static func setTextureOffset(texture_info : Dictionary, centroid : Vector2) -> Dictionary:
+    texture_info.offset += centroid.rotated(texture_info.rot)
+    return texture_info

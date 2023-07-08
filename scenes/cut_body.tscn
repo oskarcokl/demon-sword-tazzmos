@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv4kur1tuopq7"]
+
+[ext_resource type="Script" path="res://scripts/CutBody.gd" id="1_bbxmc"]
+[ext_resource type="Texture2D" uid="uid://c7uh3mqi5aipt" path="res://assets/pdn1_fr1.png" id="2_b6n2k"]
+
+[node name="CutBody" type="RigidBody2D"]
+input_pickable = true
+gravity_scale = 0.39
+script = ExtResource("1_bbxmc")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("2_b6n2k")
+texture_scale = Vector2(0.14, 0.14)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -4,6 +4,9 @@ extends Node2D
 @onready var collision_polyong: CollisionPolygon2D = $SourcePolygons/CutBody/CollisionPolygon2D
 @onready var _cut_line: Line2D = $CutLine
 @onready var _source_polygon_parent: Node2D = $SourcePolygons
+@onready var rigidbody_template: PackedScene = preload("res://scenes/cut_body.tscn")
+
+
 @export var cut_visualizer: PackedScene
 
 const CUT_LINE_STATIONARY_DELAY : float = 0.2 #after that amount of seconds remaining stationary will end the cut line process and cut the sources
@@ -34,14 +37,12 @@ func draw_polygon_rect() -> void:
     # Looks like the the vertices are relative to the polygon anchor
     var vertices = PackedVector2Array([
         Vector2(0, 0),
-        Vector2(0, 32),
-        Vector2(32, 32),
-        Vector2(32, 0),
+        Vector2(0, 224),
+        Vector2(224, 224),
+        Vector2(224, 0),
     ])
     polygon.polygon = vertices
-    polygon.scale = Vector2(7, 7)
     collision_polyong.polygon = vertices
-    collision_polyong.scale = Vector2(7, 7)
 
 
 func calculate_cut_line(cur_pos: Vector2, t: float) -> void:
@@ -138,7 +139,10 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
             s_mass = source.mass
 
 
-        var cut_fracture_info: Dictionary = cut_fracture(source_polygon, cut_shape, source_trans, cut_trans, 5000, 3000, 250, 1)
+        # var transformed_polygon = source_polygon * source_trans
+        # var transformed_cut_shape = cut_shape * cut_trans
+        var cut_fracture_info: Dictionary = cut_fracture(source_polygon, cut_shape, source_trans, cut_trans, 500, 3000, 250, 1)
+
 
         if cut_fracture_info.shapes.size() <= 0 and  cut_fracture_info.fractures.size() <= 0:
             continue
@@ -149,6 +153,7 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
             var mass : float = s_mass * area_p
             var dir : Vector2 = (shape.spawn_pos - cut_pos).normalized()
 
+            print("Shape", shape)
             call_deferred("spawnRigibody2d", shape, source.modulate, s_lin_vel + dir * cut_force, s_ang_vel, mass, cut_pos, source.getTextureInfo())
 
         source.queue_free()
@@ -158,20 +163,22 @@ func cut_fracture(source_polygon: PackedVector2Array, cut_polygon: PackedVector2
     var cut_info : Dictionary = PolygonLib.cutShape(source_polygon, cut_polygon, source_trans_global, cut_trans_global)
 
     var fracture_infos : Array = []
-    if cut_info.intersected and cut_info.intersected.size() > 0:
-        for shape in cut_info.intersected:
-            var area : float = PolygonLib.getPolygonArea(shape)
-            if area < fracture_min_area:
-                continue
+    # if cut_info.intersected and cut_info.intersected.size() > 0:
+    #     for shape in cut_info.intersected:
+    #         var area : float = PolygonLib.getPolygonArea(shape)
+    #         print("Area:", area)
+    #         if area < fracture_min_area:
+    #             continue
 
-            var fracture_info : Array = fractureDelaunay(shape, source_trans_global, fractures, shard_min_area)
-            fracture_infos.append(fracture_info)
+    #         var fracture_info : Array = fractureDelaunay(shape, source_trans_global, fractures, shard_min_area)
+    #         fracture_infos.append(fracture_info)
 
     var shape_infos : Array = []
     if cut_info.final and cut_info.final.size() > 0:
         for shape in cut_info.final:
             var triangulation : Dictionary = PolygonLib.triangulatePolygon(shape)
             var shape_area : float = triangulation.area#PolygonLib.getPolygonArea(shape)
+            print("Shape area:", shape_area)
             if shape_area < cut_min_area:
                 var fracture_info : Array = fractureDelaunay(shape, source_trans_global, fractures, shard_min_area)
                 fracture_infos.append(fracture_info)
@@ -227,7 +234,6 @@ func getRandomPointsInPolygon(poly : PackedVector2Array, number : int) -> Packed
     return points
 
 
-
 #if a polygon is triangulated, that function can be used to get a random triangle from the triangultion
 #each triangle is weighted based on its area
 func getRandomTriangle(triangulation : Dictionary) -> PackedVector2Array:
@@ -249,6 +255,21 @@ func getRandomPointInTriangle(points : PackedVector2Array) -> Vector2:
 
     return (1.0 - sqrt_1) * points[0] + sqrt_1 * (1.0 - rand_2) * points[1] + sqrt_1 * rand_2 * points[2]
 
+
+
+func spawnRigibody2d(shape_info : Dictionary, color : Color, lin_vel : Vector2, ang_vel : float, mass : float, cut_pos : Vector2, texture_info : Dictionary) -> void:
+    print("Spawn")
+    print("Texture info", texture_info)
+    var instance = rigidbody_template.instantiate()
+    _source_polygon_parent.add_child(instance)
+    instance.global_position = shape_info.spawn_pos
+    instance.global_rotation = shape_info.spawn_rot
+    instance.set_polygon_custom(shape_info.centered_shape)
+    instance.modulate = color
+    instance.linear_velocity = lin_vel
+    instance.angular_velocity = ang_vel
+    instance.mass = mass
+    instance.set_texture(PolygonLib.setTextureOffset(texture_info, shape_info.centroid))
 
 
 
