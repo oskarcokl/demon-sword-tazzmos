@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwur4ahq3hqi6"
+path="res://.godot/imported/Crossbow Bolt Passby.wav-8f9068f67c25649ac759a2b3f9ee73d7.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Crossbow Bolt Passby.wav"
+dest_files=["res://.godot/imported/Crossbow Bolt Passby.wav-8f9068f67c25649ac759a2b3f9ee73d7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

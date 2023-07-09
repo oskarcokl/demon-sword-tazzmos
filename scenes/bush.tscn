@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp27q32nvkvmy"]
+
+[ext_resource type="Texture2D" uid="uid://hp0d1jlfhyfw" path="res://assets/tilesets/tilemap_packed.png" id="1_5txk6"]
+[ext_resource type="Script" path="res://scenes/Foliage.gd" id="2_d62pe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukm17"]
+atlas = ExtResource("1_5txk6")
+region = Rect2(80, 1, 16, 15)
+
+[node name="Bush" type="Sprite2D"]
+scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_ukm17")
+offset = Vector2(0, -7)
+script = ExtResource("2_d62pe")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.17233e-07, -7)
+scale = Vector2(0.8, 0.8)
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

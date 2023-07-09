@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4hf63ejgqigk"
+path="res://.godot/imported/Crossbow Set Nut Against Sear.wav-a32d100ccc40ba96c1bdb6544a3e2f64.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Crossbow Set Nut Against Sear.wav"
+dest_files=["res://.godot/imported/Crossbow Set Nut Against Sear.wav-a32d100ccc40ba96c1bdb6544a3e2f64.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

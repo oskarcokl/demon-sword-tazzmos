@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuxbap688p5xm"
+path="res://.godot/imported/Scythian Recurve Draw.wav-f72cb166886fb73783349083eaed0afd.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Scythian Recurve Draw.wav"
+dest_files=["res://.godot/imported/Scythian Recurve Draw.wav-f72cb166886fb73783349083eaed0afd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

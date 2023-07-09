@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cw383dpob3fg"
+path="res://.godot/imported/Scythian Recurve Arrow Pass.wav-de35caa01f78badef65b4a69ec68df07.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Scythian Recurve Arrow Pass.wav"
+dest_files=["res://.godot/imported/Scythian Recurve Arrow Pass.wav-de35caa01f78badef65b4a69ec68df07.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

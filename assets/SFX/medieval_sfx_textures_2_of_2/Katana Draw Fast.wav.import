@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0akllervgfu4"
+path="res://.godot/imported/Katana Draw Fast.wav-9fa877eb39a0598c7f269a24ae1cf060.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_2_of_2/Katana Draw Fast.wav"
+dest_files=["res://.godot/imported/Katana Draw Fast.wav-9fa877eb39a0598c7f269a24ae1cf060.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

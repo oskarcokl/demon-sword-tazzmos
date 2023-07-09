@@ -4,7 +4,8 @@ extends Node2D
 @onready var collision_polyong: CollisionPolygon2D = $SourcePolygons/CutBody/CollisionPolygon2D
 @onready var _cut_line: Line2D = $CutLine
 @onready var _source_polygon_parent: Node2D = $SourcePolygons
-@onready var rigidbody_template: PackedScene = preload("res://scenes/cut_body.tscn")
+@onready var rigidbody_template: PackedScene = preload("res://scenes/imple.tscn")
+@onready var game_over_screen: MarginContainer = $GameOverScreen
 
 
 @export var cut_visualizer: PackedScene
@@ -30,19 +31,6 @@ var _rng : RandomNumberGenerator
 # Called when the node enters the scene tree for the first time.
 func _ready():
     _rng = RandomNumberGenerator.new()
-    draw_polygon_rect()
-
-
-func draw_polygon_rect() -> void:
-    # Looks like the the vertices are relative to the polygon anchor
-    var vertices = PackedVector2Array([
-        Vector2(0, 0),
-        Vector2(0, 224),
-        Vector2(224, 224),
-        Vector2(224, 0),
-    ])
-    polygon.polygon = vertices
-    collision_polyong.polygon = vertices
 
 
 func calculate_cut_line(cur_pos: Vector2, t: float) -> void:
@@ -97,7 +85,7 @@ func end_cut_line() -> void:
 
         final_shape = PolygonLib.offsetPolyline(final_line, 2.0, true)[0]
         final_shape = PolygonLib.translatePolygon(final_shape, -_cut_line_points[0])
-        cut_source_polygons(_cut_line_points[0], final_shape, 0.0, 0.0, 0.25)
+        cut_source_polygons(_cut_line_points[0], final_shape, 0.0, 0.0, 2.0)
 
 
     if _cut_line_points.size() > 1:
@@ -147,13 +135,14 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
         if cut_fracture_info.shapes.size() <= 0 and  cut_fracture_info.fractures.size() <= 0:
             continue
 
+        var source_uv : PackedVector2Array = source.get_uv()
 
         for shape in cut_fracture_info.shapes:
             var area_p : float = shape.area / total_area
             var mass : float = s_mass * area_p
             var dir : Vector2 = (shape.spawn_pos - cut_pos).normalized()
 
-            call_deferred("spawnRigibody2d", shape, source.modulate, s_lin_vel + dir * cut_force, s_ang_vel, mass, cut_pos, source.getTextureInfo())
+            call_deferred("spawnRigibody2d", shape, source.modulate, s_lin_vel + dir * cut_force, s_ang_vel, mass, source.getTextureInfo(), source_uv)
 
         source.queue_free()
 
@@ -255,17 +244,19 @@ func getRandomPointInTriangle(points : PackedVector2Array) -> Vector2:
 
 
 
-func spawnRigibody2d(shape_info : Dictionary, color : Color, lin_vel : Vector2, ang_vel : float, mass : float, cut_pos : Vector2, texture_info : Dictionary) -> void:
+func spawnRigibody2d(shape_info : Dictionary, color : Color, lin_vel : Vector2, ang_vel : float, mass : float, texture_info : Dictionary, source_uv: PackedVector2Array) -> void:
     var instance = rigidbody_template.instantiate()
     _source_polygon_parent.add_child(instance)
     instance.global_position = shape_info.spawn_pos
     instance.global_rotation = shape_info.spawn_rot
     instance.set_polygon_custom(shape_info.centered_shape)
+    # instance.set_uv(source_uv)
     instance.modulate = color
     instance.linear_velocity = lin_vel
     instance.angular_velocity = ang_vel
     instance.mass = mass
     instance.set_texture(PolygonLib.setTextureOffset(texture_info, shape_info.centroid))
+    instance.dead()
 
 
 
@@ -290,3 +281,10 @@ func _process(delta: float) -> void:
         if _cut_line_t < 1.0:
             _cut_line_t += delta * (1.0 / CUT_LINE_STATIONARY_DELAY)
         calculate_cut_line(cur_pos, _cut_line_t)
+
+
+func _on_health_bar_player_dead() -> void:
+    game_over_screen.game_over()
+    get_tree().paused = true
+
+

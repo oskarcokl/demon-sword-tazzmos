@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://iuryc8atn2id"]
+
+[ext_resource type="Texture2D" uid="uid://hp0d1jlfhyfw" path="res://assets/tilesets/tilemap_packed.png" id="1_mf6q3"]
+[ext_resource type="Script" path="res://scenes/Foliage.gd" id="2_f8vlk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojdxs"]
+atlas = ExtResource("1_mf6q3")
+region = Rect2(64, 0, 15, 31)
+
+[node name="Tree" type="Sprite2D"]
+texture = SubResource("AtlasTexture_ojdxs")
+offset = Vector2(0, -15)
+script = ExtResource("2_f8vlk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.17233e-07, -15)
+scale = Vector2(0.8, 1.6)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcsvgxdhnl37n"]
+
+[ext_resource type="Script" path="res://scenes/HealthBar.gd" id="1_4iofi"]
+[ext_resource type="Texture2D" uid="uid://csjnlmr7oa36s" path="res://assets/tilesets/0x72_DungeonTilesetII_v1.6.png" id="1_l88xd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwx6g"]
+atlas = ExtResource("1_l88xd")
+region = Rect2(321, 370, 13, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nea8i"]
+atlas = ExtResource("1_l88xd")
+region = Rect2(289, 370, 13, 12)
+
+[node name="HealthBar" type="Node2D"]
+script = ExtResource("1_4iofi")
+hearts = 10
+
+[node name="EmptyHeart" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gwx6g")
+
+[node name="FullHeart" type="Sprite2D" parent="EmptyHeart"]
+texture = SubResource("AtlasTexture_nea8i")

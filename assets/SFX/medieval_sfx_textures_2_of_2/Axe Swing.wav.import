@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://r52kq43m23ro"
+path="res://.godot/imported/Axe Swing.wav-5a8e76c7e885c3a82ef868619b80eb95.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_2_of_2/Axe Swing.wav"
+dest_files=["res://.godot/imported/Axe Swing.wav-5a8e76c7e885c3a82ef868619b80eb95.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

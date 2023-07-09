@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://khq5er1b1wv2"
+path="res://.godot/imported/Katana Swing.wav-048c9c0773c8c906d8ab0121de3fd7ec.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Katana Swing.wav"
+dest_files=["res://.godot/imported/Katana Swing.wav-048c9c0773c8c906d8ab0121de3fd7ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

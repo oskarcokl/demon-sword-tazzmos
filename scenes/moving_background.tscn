@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce4bneoa7yd3g"]
+
+[ext_resource type="Script" path="res://scripts/MovingBackground.gd" id="1_vj353"]
+[ext_resource type="PackedScene" uid="uid://iuryc8atn2id" path="res://scenes/tree.tscn" id="2_45k7c"]
+[ext_resource type="PackedScene" uid="uid://cp27q32nvkvmy" path="res://scenes/bush.tscn" id="3_qcf72"]
+[ext_resource type="PackedScene" uid="uid://cy7xghanir8ko" path="res://scenes/small_tree.tscn" id="4_i5f6v"]
+[ext_resource type="PackedScene" uid="uid://bjmearmf038s2" path="res://scenes/grass.tscn" id="5_k7jbb"]
+[ext_resource type="PackedScene" uid="uid://deus6cxmoqmyk" path="res://scenes/mushroom.tscn" id="6_gnvw4"]
+
+[node name="MovingBackground" type="Node2D"]
+script = ExtResource("1_vj353")
+tree = ExtResource("2_45k7c")
+bush = ExtResource("3_qcf72")
+mushroom = ExtResource("6_gnvw4")
+grass = ExtResource("5_k7jbb")
+small_tree = ExtResource("4_i5f6v")
+
+[node name="Tree" parent="." instance=ExtResource("2_45k7c")]
+visible = false
+
+[node name="Bush" parent="." instance=ExtResource("3_qcf72")]
+visible = false
+
+[node name="SmallTree" parent="." instance=ExtResource("4_i5f6v")]
+visible = false
+
+[node name="Grass" parent="." instance=ExtResource("5_k7jbb")]
+visible = false
+
+[node name="Mushroom" parent="." instance=ExtResource("6_gnvw4")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

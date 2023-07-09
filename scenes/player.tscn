@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://opc5eh51eyuj"]
+[gd_scene load_steps=16 format=3 uid="uid://opc5eh51eyuj"]
 
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_25vc2"]
 [ext_resource type="Texture2D" uid="uid://csjnlmr7oa36s" path="res://assets/tilesets/0x72_DungeonTilesetII_v1.6.png" id="1_yrh0r"]
 [ext_resource type="Script" path="res://scenes/SwordAnimation.gd" id="2_xitdd"]
+[ext_resource type="AudioStream" uid="uid://bbicc2n3gj00p" path="res://assets/SFX/swishes/swishes/swish-11.wav" id="3_eu14s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_on4ni"]
 atlas = ExtResource("1_yrh0r")
@@ -73,23 +75,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6pbf"]
-size = Vector2(14, 19.5)
+size = Vector2(14, 16.75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2daf"]
 atlas = ExtResource("1_yrh0r")
 region = Rect2(293, 67, 6, 27)
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_25vc2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hoxrq")
 animation = &"running"
 autoplay = "running"
-frame_progress = 0.615511
+frame_progress = 0.0839864
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 1.625)
 shape = SubResource("RectangleShape2D_y6pbf")
 
 [node name="Sword pivot" type="Node2D" parent="."]
@@ -101,3 +104,6 @@ scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_l2daf")
 offset = Vector2(18.75, -10)
 script = ExtResource("2_xitdd")
+
+[node name="Swing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eu14s")

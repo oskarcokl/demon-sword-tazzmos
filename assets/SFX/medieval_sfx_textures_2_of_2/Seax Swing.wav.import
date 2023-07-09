@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://i13q4swtkax"
+path="res://.godot/imported/Seax Swing.wav-a9045fc9c73240b29afaf6eb0ac5e441.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_2_of_2/Seax Swing.wav"
+dest_files=["res://.godot/imported/Seax Swing.wav-a9045fc9c73240b29afaf6eb0ac5e441.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -5,3 +5,4 @@
 [node name="CutVisualize" type="Polygon2D"]
 modulate = Color(1, 0.415686, 0.415686, 1)
 script = ExtResource("1_r0o6i")
+fade_speed = 0.2

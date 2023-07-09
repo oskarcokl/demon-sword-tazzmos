@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ccadbliym7i3a"
+path="res://.godot/imported/English Longbow Set Arrow.wav-f64f4de17d6b7d34cb4aace09f3cd3fd.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/English Longbow Set Arrow.wav"
+dest_files=["res://.godot/imported/English Longbow Set Arrow.wav-f64f4de17d6b7d34cb4aace09f3cd3fd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

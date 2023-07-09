@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bo6juebw6bxn1"
+path="res://.godot/imported/Katana Sheath Fast.wav-f30af642d42fa392f0583a3f265616aa.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Katana Sheath Fast.wav"
+dest_files=["res://.godot/imported/Katana Sheath Fast.wav-f30af642d42fa392f0583a3f265616aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

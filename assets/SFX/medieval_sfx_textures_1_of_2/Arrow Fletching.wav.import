@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bgxgk30sbt6rw"
+path="res://.godot/imported/Arrow Fletching.wav-425401240b2088b19543b1050ea5c5b8.sample"
+
+[deps]
+
+source_file="res://assets/SFX/medieval_sfx_textures_1_of_2/Arrow Fletching.wav"
+dest_files=["res://.godot/imported/Arrow Fletching.wav-425401240b2088b19543b1050ea5c5b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

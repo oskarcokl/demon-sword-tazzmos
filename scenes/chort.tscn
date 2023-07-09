@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpkvy1p57wudm"]
+
+[ext_resource type="Script" path="res://scripts/CutBody.gd" id="1_pw0ho"]
+[ext_resource type="Texture2D" uid="uid://c448tufpnd1na" path="res://assets/chort_idle_anim_f1.png" id="2_vq5w8"]
+[ext_resource type="Texture2D" uid="uid://csjnlmr7oa36s" path="res://assets/tilesets/0x72_DungeonTilesetII_v1.6.png" id="3_k0dv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ysjj"]
+atlas = ExtResource("3_k0dv2")
+region = Rect2(416, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt477"]
+atlas = ExtResource("3_k0dv2")
+region = Rect2(448, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26amt"]
+atlas = ExtResource("3_k0dv2")
+region = Rect2(464, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43jjy"]
+atlas = ExtResource("3_k0dv2")
+region = Rect2(480, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cntvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ysjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt477")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26amt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43jjy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Imple" type="RigidBody2D"]
+input_pickable = true
+gravity_scale = 0.39
+script = ExtResource("1_pw0ho")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+color = Color(1, 1, 1, 0)
+texture = ExtResource("2_vq5w8")
+texture_scale = Vector2(0.14, 0.14)
+polygon = PackedVector2Array(-48, -48, 32, -48, 32, 56, -48, 56)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(-7, 7)
+sprite_frames = SubResource("SpriteFrames_cntvr")
+autoplay = "default"
+frame_progress = 0.660653
