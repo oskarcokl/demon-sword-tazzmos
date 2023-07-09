@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b437ldi6lop4s"]
+[gd_scene load_steps=6 format=3 uid="uid://b437ldi6lop4s"]
 
 [ext_resource type="Script" path="res://scripts/CutSprite.gd" id="1_bm7up"]
 [ext_resource type="PackedScene" uid="uid://dxkgtqgehunh1" path="res://scenes/cut_visualize.tscn" id="2_ebyoa"]
 [ext_resource type="PackedScene" uid="uid://cv4kur1tuopq7" path="res://scenes/cut_body.tscn" id="3_rtuqr"]
+[ext_resource type="PackedScene" uid="uid://opc5eh51eyuj" path="res://scenes/player.tscn" id="4_4fked"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_pb5tq"]
 b = Vector2(1152, 0)
@@ -30,3 +31,5 @@ end_cap_mode = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(0, 648)
 shape = SubResource("SegmentShape2D_pb5tq")
+
+[node name="Player" parent="." instance=ExtResource("4_4fked")]
