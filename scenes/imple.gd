@@ -6,11 +6,22 @@ extends RigidBody2D
 @onready var _polygon: Polygon2D = $Polygon2D
 @onready var _collision_polygon: CollisionPolygon2D = $CollisionPolygon2D
 @onready var _animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _death_sound: AudioStreamPlayer = $Death
+@onready var _can_die = true
 
 
 func _ready() -> void:
     _collision_polygon.polygon = _polygon.polygon
 
+
+func set_can_die(die: bool) -> void:
+    _can_die = die
+
+func kill():
+    if _can_die:
+        _animated_sprite.visible = false
+        _collision_polygon.disabled = true
+        _death_sound.play()
 
 func get_polygon() -> PackedVector2Array:
     return _polygon.polygon
@@ -61,4 +72,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    queue_free()
+
+
+func _on_death_finished() -> void:
     queue_free()

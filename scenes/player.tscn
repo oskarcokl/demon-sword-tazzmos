@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://opc5eh51eyuj"]
+[gd_scene load_steps=17 format=3 uid="uid://opc5eh51eyuj"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_25vc2"]
 [ext_resource type="Texture2D" uid="uid://csjnlmr7oa36s" path="res://assets/tilesets/0x72_DungeonTilesetII_v1.6.png" id="1_yrh0r"]
 [ext_resource type="Script" path="res://scenes/SwordAnimation.gd" id="2_xitdd"]
 [ext_resource type="AudioStream" uid="uid://bbicc2n3gj00p" path="res://assets/SFX/swishes/swishes/swish-11.wav" id="3_eu14s"]
+[ext_resource type="AudioStream" uid="uid://ds3dk1cagx185" path="res://assets/SFX/80-CC0-creature-SFX/hurt_03.ogg" id="5_vwvda"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_on4ni"]
 atlas = ExtResource("1_yrh0r")
@@ -107,3 +108,8 @@ script = ExtResource("2_xitdd")
 
 [node name="Swing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_eu14s")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vwvda")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

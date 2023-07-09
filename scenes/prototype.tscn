@@ -462,7 +462,7 @@ end_cap_mode = 2
 [node name="HealthBar" parent="." instance=ExtResource("7_tgj03")]
 position = Vector2(64, 88)
 scale = Vector2(5, 5)
-hearts = 1
+hearts = 3
 
 [node name="Player" parent="." instance=ExtResource("4_4fked")]
 position = Vector2(184, 552)

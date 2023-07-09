@@ -6,6 +6,7 @@ extends Node2D
 @onready var _source_polygon_parent: Node2D = $SourcePolygons
 @onready var rigidbody_template: PackedScene = preload("res://scenes/imple.tscn")
 @onready var game_over_screen: MarginContainer = $GameOverScreen
+@onready var player: Area2D = $Player
 
 
 @export var cut_visualizer: PackedScene
@@ -25,6 +26,7 @@ var _input_disabled : bool = false
 var _cut_line_start_direction: Vector2 = Vector2.ZERO
 var _cut_line_total_length: float = 0.0
 var _rng : RandomNumberGenerator
+var _can_swing: bool = true
 
 
 
@@ -137,6 +139,7 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
 
         var source_uv : PackedVector2Array = source.get_uv()
 
+
         for shape in cut_fracture_info.shapes:
             var area_p : float = shape.area / total_area
             var mass : float = s_mass * area_p
@@ -144,7 +147,7 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
 
             call_deferred("spawnRigibody2d", shape, source.modulate, s_lin_vel + dir * cut_force, s_ang_vel, mass, source.getTextureInfo(), source_uv)
 
-        source.queue_free()
+        source.kill()
 
 
 func cut_fracture(source_polygon: PackedVector2Array, cut_polygon: PackedVector2Array, source_trans_global: Transform2D, cut_trans_global: Transform2D, cut_min_area: float, fracture_min_area: float, shard_min_area: float, fractures: int = 3) -> Dictionary:
@@ -256,6 +259,7 @@ func spawnRigibody2d(shape_info : Dictionary, color : Color, lin_vel : Vector2, 
     instance.angular_velocity = ang_vel
     instance.mass = mass
     instance.set_texture(PolygonLib.setTextureOffset(texture_info, shape_info.centroid))
+    instance.set_can_die(false)
     instance.dead()
 
 
@@ -268,11 +272,15 @@ func _input(event: InputEvent) -> void:
         if event.button_index == 1:
             if _cut_line_enabled and not event.pressed and _cut_line.visible:
                 end_cut_line()
+                _can_swing = true
                 _cut_line_enabled = false
                 _cut_line.visible = false
                 _cut_line_last_end_point = Vector3.ZERO
             elif event.pressed:
                 _cut_line_enabled = true
+                if _can_swing:
+                    player.swing()
+                    _can_swing = false
 
 
 func _process(delta: float) -> void:

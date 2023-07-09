@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkjnhl028f5jh"]
+[gd_scene load_steps=10 format=3 uid="uid://bkjnhl028f5jh"]
 
 [ext_resource type="Script" path="res://scenes/imple.gd" id="1_82008"]
 [ext_resource type="Texture2D" uid="uid://b6uh1hlqa0gom" path="res://assets/imp_idle_anim_f0.png" id="2_k80e0"]
 [ext_resource type="Texture2D" uid="uid://csjnlmr7oa36s" path="res://assets/tilesets/0x72_DungeonTilesetII_v1.6.png" id="3_bwklv"]
+[ext_resource type="AudioStream" uid="uid://cxnkwlf0pplk3" path="res://assets/SFX/80-CC0-creature-SFX/weird_02.ogg" id="4_7aloq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ysjj"]
 atlas = ExtResource("3_bwklv")
@@ -66,4 +67,8 @@ frame_progress = 0.00647966
 position = Vector2(-5, 11)
 scale = Vector2(4.5, 5.3)
 
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7aloq")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="finished" from="Death" to="." method="_on_death_finished"]
