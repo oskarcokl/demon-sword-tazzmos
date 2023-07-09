@@ -153,7 +153,6 @@ func cut_source_polygons(cut_pos: Vector2, cut_shape: PackedVector2Array, cut_ro
             var mass : float = s_mass * area_p
             var dir : Vector2 = (shape.spawn_pos - cut_pos).normalized()
 
-            print("Shape", shape)
             call_deferred("spawnRigibody2d", shape, source.modulate, s_lin_vel + dir * cut_force, s_ang_vel, mass, cut_pos, source.getTextureInfo())
 
         source.queue_free()
@@ -178,7 +177,6 @@ func cut_fracture(source_polygon: PackedVector2Array, cut_polygon: PackedVector2
         for shape in cut_info.final:
             var triangulation : Dictionary = PolygonLib.triangulatePolygon(shape)
             var shape_area : float = triangulation.area#PolygonLib.getPolygonArea(shape)
-            print("Shape area:", shape_area)
             if shape_area < cut_min_area:
                 var fracture_info : Array = fractureDelaunay(shape, source_trans_global, fractures, shard_min_area)
                 fracture_infos.append(fracture_info)
@@ -258,8 +256,6 @@ func getRandomPointInTriangle(points : PackedVector2Array) -> Vector2:
 
 
 func spawnRigibody2d(shape_info : Dictionary, color : Color, lin_vel : Vector2, ang_vel : float, mass : float, cut_pos : Vector2, texture_info : Dictionary) -> void:
-    print("Spawn")
-    print("Texture info", texture_info)
     var instance = rigidbody_template.instantiate()
     _source_polygon_parent.add_child(instance)
     instance.global_position = shape_info.spawn_pos
